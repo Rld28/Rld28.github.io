@@ -358,4 +358,25 @@ function getGreeting() {
   }
 }
 getGreeting();
+
+function getWeather(){
+  $.ajax({
+  url: "https://api.weatherapi.com/v1/current.json",
+  method: "GET",
+  data: {
+    q: "Colombo",
+    key: "8528ec58676e49fa8af123136242212"
+  },
+  success: function(response) {
+    const temperature = response.current.temp_c;
+    const condition = response.current.condition.text;
+    $("#greeting").append(`<br><br><strong style='color:#6b2485'>Current temperature in Colombo: ${temperature}°C, ${condition}</strong>`);
+  },
+  error: function() {
+    console.error("Unable to retrieve weather data.");
+  }
+});
+}
+getWeather();
 </script>
+
